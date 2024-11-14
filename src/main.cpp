@@ -55,15 +55,15 @@ NimbleBluetooth *nimbleBluetooth = nullptr;
 NRF52Bluetooth *nrf52Bluetooth = nullptr;
 #endif
 
-#if HAS_WIFI
-#include "mesh/api/WiFiServerAPI.h"
-#include "mesh/wifi/WiFiAPClient.h"
-#endif
+//#if HAS_WIFI
+//#include "mesh/api/WiFiServerAPI.h"
+//#include "mesh/wifi/WiFiAPClient.h"
+//#endif
 
-#if HAS_ETHERNET
-#include "mesh/api/ethServerAPI.h"
-#include "mesh/eth/ethClient.h"
-#endif
+//#if HAS_ETHERNET
+//#include "mesh/api/ethServerAPI.h"
+//#include "mesh/eth/ethClient.h"
+//#endif
 
 #if !MESHTASTIC_EXCLUDE_MQTT
 #include "mqtt/MQTT.h"
@@ -1091,19 +1091,6 @@ void setup()
     // Make sure LoRa has been started before disabling FAN.
     if (config.lora.pa_fan_disabled)
         digitalWrite(RF95_FAN_EN, LOW ^ 0);
-#endif
-
-#ifndef ARCH_PORTDUINO
-
-        // Initialize Wifi
-#if HAS_WIFI
-    initWifi();
-#endif
-
-#if HAS_ETHERNET
-    // Initialize Ethernet
-    initEthernet();
-#endif
 #endif
 
 #if defined(ARCH_ESP32) && !MESHTASTIC_EXCLUDE_WEBSERVER
